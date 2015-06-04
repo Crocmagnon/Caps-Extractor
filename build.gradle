@@ -1,0 +1,74 @@
+apply plugin: "idea"
+apply plugin: "java"
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile "com.intellij:forms_rt:7.0.3", 'org.apache.commons:commons-lang3:3.4',
+            'com.jgoodies:jgoodies-common:1.7.0', 'com.intellij:annotations:12.0'
+    runtime "com.intellij:forms_rt:7.0.3", 'org.apache.commons:commons-lang3:3.4',
+            'com.jgoodies:jgoodies-common:1.7.0', 'com.intellij:annotations:12.0'
+}
+
+def jarPackage(artifactName, artifactVersion, artifactClass) {
+    if (artifactVersion == "" || artifactVersion == null)
+        artifactVersion = "1.0.0"
+
+    int lastDotIndex = artifactName.lastIndexOf('.')
+    String name
+    if (lastDotIndex != -1)
+        name = artifactName.substring(lastDotIndex + 1, artifactName.length())
+    else
+        name = artifactName
+
+
+    return tasks.create("jar_${name}", Jar) {
+        baseName = artifactName
+        version = artifactVersion
+        String className
+
+        if (artifactClass == "" || artifactClass == null)
+            className = baseName.capitalize()
+        else
+            className = artifactClass
+
+        from(sourceSets.main.output) {
+            int firstDotIndex = baseName.indexOf('.')
+            String includePath
+            if (firstDotIndex != -1)
+                includePath = baseName.substring(0, firstDotIndex)
+            else
+                includePath = baseName
+            include "$includePath/**"
+        }
+
+        from {
+            configurations.compile.collect {
+                it.isDirectory() ? it : zipTree(it)
+            }
+        }
+
+//        For sources :
+//        from sourceSets.main.allSource
+
+        manifest {
+            attributes "Implementation-Title": "$className",
+                    "Implementation-Version": "$version",
+                    "Main-Class": "$baseName.$className"
+        }
+    }
+}
+
+def jarPackage(artifactName, artifactVersion) {
+    return jarPackage(artifactName, artifactVersion, "")
+}
+
+def jarPackage(artifactName) {
+    return jarPackage(artifactName, "")
+}
+
+artifacts {
+    archives jarPackage("info.augendre.caps_extractor", "0.1.0", "MainWindow")
+}
