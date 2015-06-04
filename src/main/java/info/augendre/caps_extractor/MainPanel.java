@@ -44,14 +44,11 @@ public class MainPanel {
                 }
             }
         });
-        copyToClipboardButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String myString = outputField.getText();
-                StringSelection stringSelection = new StringSelection(myString);
-                Clipboard clpbrd = Toolkit.getDefaultToolkit().getSystemClipboard();
-                clpbrd.setContents(stringSelection, null);
-            }
+        copyToClipboardButton.addActionListener(e -> {
+            String myString = outputField.getText();
+            StringSelection stringSelection = new StringSelection(myString);
+            Clipboard clpbrd = Toolkit.getDefaultToolkit().getSystemClipboard();
+            clpbrd.setContents(stringSelection, null);
         });
     }
 
