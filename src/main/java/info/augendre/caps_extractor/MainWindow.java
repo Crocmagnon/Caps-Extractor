@@ -16,6 +16,8 @@ public class MainWindow extends JFrame {
         JMenuBar menuBar = new JMenuBar();
         JMenu help = new JMenu(I18nSupport.translate("menu.help"));
         menuBar.add(help);
+        JMenuItem helpItem = new JMenuItem(new HelpAction());
+        help.add(helpItem);
         JMenuItem about = new JMenuItem(new AboutAction());
         help.add(about);
         return menuBar;
