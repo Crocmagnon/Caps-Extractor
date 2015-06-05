@@ -1,32 +1,37 @@
-package info.augendre.caps_extractor;
+package info.augendre.caps_extractor.gui;
 
 import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
 import com.intellij.uiDesigner.core.Spacer;
+import info.augendre.caps_extractor.util.I18nSupport;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import java.util.ResourceBundle;
 
-public class AboutDialog extends JDialog {
+public class HelpDialog extends JDialog {
     private JPanel contentPane;
     private JButton buttonOK;
-    private JLabel textLabel;
+    private JLabel helpField;
 
-    public AboutDialog() {
+    public HelpDialog() {
         setContentPane(contentPane);
         setModal(true);
         getRootPane().setDefaultButton(buttonOK);
 
-        this.setTitle(I18nSupport.translate("plain.about_title"));
+        this.setTitle(I18nSupport.translate("plain.help_title"));
+
+        String helpText = "<HTML>" +
+                "<p>" +
+                I18nSupport.translate("help.content") +
+                "</p>" +
+                "</HTML>";
+
+        helpField.setText(helpText);
 
         buttonOK.addActionListener(e -> onOK());
 
-        textLabel.setText("<HTML>" +
-                "<p><strong>" + I18nSupport.translate("plain.dev") + " </strong>: Gabriel Augendre" +
-                "&lt;gabriel@augendre.info&gt;</p>" +
-                "</HTML>");
+        buttonOK.addActionListener(e -> onOK());
 
         // call onCancel() when cross is clicked
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
@@ -79,9 +84,9 @@ public class AboutDialog extends JDialog {
         final JPanel panel3 = new JPanel();
         panel3.setLayout(new GridLayoutManager(1, 1, new Insets(0, 0, 0, 0), -1, -1));
         contentPane.add(panel3, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
-        textLabel = new JLabel();
-        textLabel.setText("Label");
-        panel3.add(textLabel, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        helpField = new JLabel();
+        helpField.setText("Label");
+        panel3.add(helpField, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
     }
 
     /**

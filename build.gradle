@@ -70,5 +70,5 @@ def jarPackage(artifactName) {
 }
 
 artifacts {
-    archives jarPackage("info.augendre.caps_extractor", "0.1.0", "MainWindow")
+    archives jarPackage("info.augendre.caps_extractor", "0.1.0", "CapsExtractorApp")
 }

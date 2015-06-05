@@ -1,8 +1,9 @@
-package info.augendre.caps_extractor;
+package info.augendre.caps_extractor.gui;
 
 import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
 import com.intellij.uiDesigner.core.Spacer;
+import info.augendre.caps_extractor.util.StringUtils;
 
 import javax.swing.*;
 import java.awt.*;
@@ -33,7 +34,7 @@ public class MainPanel {
             @Override
             public void keyReleased(KeyEvent e) {
                 if (parse) {
-                    outputField.setText(extractUpperCase(inputField.getText()));
+                    outputField.setText(StringUtils.extractUpperCase(inputField.getText()));
                 } else {
                     char key = e.getKeyChar();
                     if (Character.isUpperCase(key)) {
@@ -48,23 +49,6 @@ public class MainPanel {
             Clipboard clpbrd = Toolkit.getDefaultToolkit().getSystemClipboard();
             clpbrd.setContents(stringSelection, null);
         });
-    }
-
-    /**
-     * Extracts the upper case characters from the given string.
-     * @param s The string where to extract upper case characters.
-     * @return The upper case characters found in the given string.
-     */
-    public String extractUpperCase(String s) {
-        String upperCase = "";
-        for (int i = 0; i < s.length(); i++) {
-            char current = s.charAt(i);
-            if (Character.isUpperCase(current)) {
-                upperCase += current;
-            }
-        }
-
-        return upperCase;
     }
 
     public JPanel getContentPanel() {

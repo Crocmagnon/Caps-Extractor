@@ -1,4 +1,8 @@
-package info.augendre.caps_extractor;
+package info.augendre.caps_extractor.gui;
+
+import info.augendre.caps_extractor.actions.AboutAction;
+import info.augendre.caps_extractor.actions.HelpAction;
+import info.augendre.caps_extractor.util.I18nSupport;
 
 import javax.swing.*;
 
@@ -31,15 +35,5 @@ public class MainWindow extends JFrame {
         this.setLocationRelativeTo(null);
         this.setVisible(true);
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-    }
-
-    public static void main(String[] args) {
-        try {
-            UIManager.setLookAndFeel(
-                    UIManager.getSystemLookAndFeelClassName());
-        } catch (UnsupportedLookAndFeelException | ClassNotFoundException | InstantiationException | IllegalAccessException e) {
-            e.printStackTrace(System.err);
-        }
-        new MainWindow();
     }
 }

@@ -1,4 +1,7 @@
-package info.augendre.caps_extractor;
+package info.augendre.caps_extractor.actions;
+
+import info.augendre.caps_extractor.util.I18nSupport;
+import info.augendre.caps_extractor.gui.AboutDialog;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;

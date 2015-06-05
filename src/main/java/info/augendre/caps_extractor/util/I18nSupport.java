@@ -20,7 +20,7 @@
  * If not, see <http://www.gnu.org/licenses/>.
  */
 
-package info.augendre.caps_extractor;
+package info.augendre.caps_extractor.util;
 
 import com.jgoodies.common.internal.StringLocalizer;
 import org.jetbrains.annotations.NonNls;
