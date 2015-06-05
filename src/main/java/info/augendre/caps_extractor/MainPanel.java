@@ -8,8 +8,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.StringSelection;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.ResourceBundle;
@@ -52,7 +50,7 @@ public class MainPanel {
         });
     }
 
-    private String extractUpperCase(String s) {
+    public String extractUpperCase(String s) {
         String upperCase = "";
         for (int i = 0; i < s.length(); i++) {
             char current = s.charAt(i);

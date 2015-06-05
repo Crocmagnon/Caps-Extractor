@@ -1,7 +1,6 @@
 package info.augendre.caps_extractor;
 
 import javax.swing.*;
-import java.util.ResourceBundle;
 
 /**
  * Created by Gabriel.
@@ -12,7 +11,7 @@ public class MainWindow extends JFrame {
         this.setup();
     }
 
-    public JMenuBar createMenu() {
+    private JMenuBar createMenu() {
         JMenuBar menuBar = new JMenuBar();
         JMenu help = new JMenu(I18nSupport.translate("menu.help"));
         menuBar.add(help);
@@ -23,7 +22,7 @@ public class MainWindow extends JFrame {
         return menuBar;
     }
 
-    public void setup() {
+    private void setup() {
         MainPanel mainPanel = new MainPanel();
         JPanel contentPanel = mainPanel.getContentPanel();
         this.setJMenuBar(createMenu());
