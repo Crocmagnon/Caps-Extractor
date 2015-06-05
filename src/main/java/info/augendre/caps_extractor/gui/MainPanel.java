@@ -27,20 +27,8 @@ public class MainPanel {
         parse = false;
         inputField.addKeyListener(new KeyAdapter() {
             @Override
-            public void keyPressed(KeyEvent e) {
-                parse = e.getKeyCode() == KeyEvent.VK_BACK_SPACE || inputField.getSelectedText() != null;
-            }
-
-            @Override
             public void keyReleased(KeyEvent e) {
-                if (parse) {
-                    outputField.setText(StringUtils.extractUpperCase(inputField.getText()));
-                } else {
-                    char key = e.getKeyChar();
-                    if (Character.isUpperCase(key)) {
-                        outputField.setText(outputField.getText() + key);
-                    }
-                }
+                outputField.setText(StringUtils.extractUpperCase(inputField.getText()));
             }
         });
         copyToClipboardButton.addActionListener(e -> {
